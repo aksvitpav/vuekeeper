@@ -1,16 +1,57 @@
 <template>
-  <div class="note">
-    <h1>{{ msg }}</h1>
-  </div>
+  <mdb-card>
+    <mdb-card-body>
+      <mdb-card-title tag="h5">{{title}}</mdb-card-title>
+      <mdb-card-text>{{text}}</mdb-card-text>
+    </mdb-card-body>
+    <mdb-card-footer>
+      <mdb-badge color="info">{{normalizeDateTime}}</mdb-badge>
+      <mdb-btn color="danger" class="p-1">
+        <mdb-icon icon="trash-alt" />
+      </mdb-btn>
+    </mdb-card-footer>
+  </mdb-card>
 </template>
 
 <script>
+import { Timestamp } from '../config/firestore';
+
 export default {
-  name: 'Note',
+  name: "Note",
   props: {
-    msg: String
+    id: String,
+    title: String,
+    text: String,
+    created_at: Timestamp
+  },
+  computed: {
+    normalizeDateTime: function() {
+      var date = new Date(this.created_at.seconds * 1000);
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var day = date.getDate();
+      var month = date.getMonth();
+      var year = date.getFullYear();
+      function addZero(t) {
+        if (t < 10) {
+          t = "0" + t;
+        }
+        return t;
+      }
+      return (
+        day +
+        "/" +
+        addZero(month) +
+        "/" +
+        year +
+        " " +
+        addZero(hours) +
+        ":" +
+        addZero(minutes)
+      );
+    }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

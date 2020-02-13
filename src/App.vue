@@ -1,8 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <button v-on:click="addNote('title2', 'text2')">Add</button>
-    <Note msg="Welcome to Your Vue.js App" />
+    <mdb-container>
+      <mdb-row>
+        <mdb-col>
+          <h1>Добро пожаловать в VueKeeper</h1>
+        </mdb-col>
+      </mdb-row>
+      <mdb-row>
+        <mdb-col>
+          <mdb-card-group column>
+          <Note v-for="(note, index) in notes"
+          :id="note.id"
+          :title="note.title"
+          :text="note.text"
+          :created_at="note.created_at"
+          :key="index"
+          :deleteNote = "deleteNote" />
+          </mdb-card-group>
+        </mdb-col>
+      </mdb-row>
+    </mdb-container>
   </div>
 </template>
 
@@ -55,13 +72,4 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
