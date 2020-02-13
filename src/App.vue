@@ -15,6 +15,11 @@ export default {
   components: {
     Note
   },
+  data() {
+    return {
+      notes: []
+    };
+  },
   methods: {
     //Get Notes from FireBase
     getNotes: function() {
@@ -36,7 +41,7 @@ export default {
       db.collection("notes").add({
         title: title,
         text: text,
-        created_at:Timestamp.fromDate(nowDateTime),
+        created_at: Timestamp.fromDate(nowDateTime)
       });
       this.getNotes();
     }
@@ -49,6 +54,8 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
