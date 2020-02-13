@@ -15,11 +15,6 @@ export default {
   components: {
     Note
   },
-  data() {
-    return {
-      notes: []
-    };
-  },
   methods: {
     //Get Notes from FireBase
     getNotes: function() {
