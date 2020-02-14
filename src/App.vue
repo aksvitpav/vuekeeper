@@ -6,6 +6,9 @@
           <h1>Добро пожаловать в VueKeeper</h1>
         </mdb-col>
       </mdb-row>
+      <mdb-row class="justify-content-center mb-4">
+        <NoteAdd :addNote="addNote"></NoteAdd>
+      </mdb-row>
       <mdb-row>
         <mdb-col>
           <mdb-card-group column>
@@ -25,16 +28,18 @@
 
 <script>
 import Note from "./components/Note.vue";
+import NoteAdd from "./components/NoteAdd.vue";
 import { db, Timestamp } from "./config/firestore";
 
 export default {
   name: "App",
   components: {
-    Note
+    Note,
+    NoteAdd
   },
   data() {
     return {
-      notes: []
+      notes: [],
     };
   },
   methods: {
