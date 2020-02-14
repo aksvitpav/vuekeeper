@@ -1,14 +1,32 @@
 <template>
   <mdb-col col="6">
-    <mdb-card class="card-body py-2">
+    <mdb-card class="card-body p-0">
+      <mdb-card-body>
       <form v-on:submit.prevent>
-        <mdb-input class="my-1" label="Заголовок заметки" icon="pencil-alt" v-model="newNoteTitle" v-on:focus="newNoteExpand=true" />
+        <mdb-input
+          class="my-1"
+          label="Заголовок заметки"
+          v-bind:icon="icon"
+          v-model="newNoteTitle"
+          v-on:focus="expandForm"
+        />
         <template v-if="newNoteExpand">
-        <mdb-input class="my-1" type="textarea" label="Текст заметки" icon="sticky-note" v-model="newNoteText" />
-        <mdb-btn color="success" v-on:click="newNoteAdd">Сохранить</mdb-btn>
-        <mdb-btn color="warning" v-on:click="newNoteCancel">Отмена</mdb-btn>
+          <mdb-input
+            class="my-1"
+            type="textarea"
+            label="Текст заметки"
+            icon="sticky-note"
+            v-model="newNoteText"
+          />
         </template>
       </form>
+      </mdb-card-body>
+    <mdb-card-footer class="text-right" v-if="newNoteExpand">
+      <template v-if="hasText">
+            <mdb-btn color="success" v-on:click="newNoteAdd">Сохранить</mdb-btn>
+          </template>
+          <mdb-btn color="warning" v-on:click="newNoteCancel">Отмена</mdb-btn>
+    </mdb-card-footer>
     </mdb-card>
   </mdb-col>
 </template>
@@ -23,20 +41,31 @@ export default {
     return {
       newNoteExpand: false,
       newNoteTitle: "",
-      newNoteText: ""
+      newNoteText: "",
+      icon:'plus-circle'
     };
   },
   methods: {
-    newNoteCancel: function () {
-      this.newNoteExpand=false;
-      this.newNoteTitle='';
-      this.newNoteText='';
+    expandForm: function () {
+      this.newNoteExpand=true;
+      this.icon = "pencil-alt"
     },
-    newNoteAdd: function () {
+    newNoteCancel: function() {
+      this.newNoteExpand = false;
+      this.icon = "plus-circle"
+      this.newNoteTitle = "";
+      this.newNoteText = "";
+    },
+    newNoteAdd: function() {
       this.addNote(this.newNoteTitle, this.newNoteText);
-      this.newNoteExpand=false;
-      this.newNoteTitle='';
-      this.newNoteText='';
+      this.newNoteExpand = false;
+      this.newNoteTitle = "";
+      this.newNoteText = "";
+    }
+  },
+  computed: {
+    hasText: function() {
+      return this.newNoteText != "";
     }
   }
 };

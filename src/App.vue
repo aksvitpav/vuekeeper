@@ -18,7 +18,8 @@
           :text="note.text"
           :created_at="note.created_at"
           :key="index"
-          :deleteNote = "deleteNote" />
+          :deleteNote = "deleteNote"
+          :editNote = "editNote" />
           </mdb-card-group>
         </mdb-col>
       </mdb-row>
@@ -65,6 +66,11 @@ export default {
         text: text,
         created_at: Timestamp.fromDate(nowDateTime)
       });
+      this.getNotes();
+    },
+    //Edit Note on FireBase
+    editNote: function (id, updated) {
+      db.collection('notes').doc(id).set(updated);
       this.getNotes();
     },
     //Delete Note from FireBase
