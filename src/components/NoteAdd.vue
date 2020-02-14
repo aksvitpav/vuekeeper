@@ -1,5 +1,5 @@
 <template>
-  <mdb-col col="6">
+  <mdb-col md="12" lg="6">
     <mdb-card class="card-body p-0">
       <mdb-card-body>
       <form v-on:submit.prevent>
@@ -59,6 +59,7 @@ export default {
     newNoteAdd: function() {
       this.addNote(this.newNoteTitle, this.newNoteText);
       this.newNoteExpand = false;
+      this.icon = "plus-circle"
       this.newNoteTitle = "";
       this.newNoteText = "";
     }

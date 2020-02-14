@@ -2,15 +2,19 @@
   <div id="app">
     <mdb-container>
       <mdb-row>
-        <mdb-col>
+        <mdb-col class="text-center">
+          <img src="../src/assets/logo.svg" class="logo rounded m-2" alt="...">
           <h1>Добро пожаловать в VueKeeper</h1>
         </mdb-col>
       </mdb-row>
-      <mdb-row class="justify-content-center mb-4">
+      <mdb-row class="mb-4">
         <NoteAdd :addNote="addNote"></NoteAdd>
+        <mdb-col md="12" lg="6">
+          <Weather></Weather>
+        </mdb-col>
       </mdb-row>
       <mdb-row>
-        <mdb-col>
+        <mdb-col md="12" lg="9">
           <mdb-card-group column>
           <Note v-for="(note, index) in notes"
           :id="note.id"
@@ -30,13 +34,15 @@
 <script>
 import Note from "./components/Note.vue";
 import NoteAdd from "./components/NoteAdd.vue";
+import Weather from "./components/Weather.vue"
 import { db, Timestamp } from "./config/firestore";
 
 export default {
   name: "App",
   components: {
     Note,
-    NoteAdd
+    NoteAdd,
+    Weather
   },
   data() {
     return {
@@ -87,4 +93,7 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+.logo {
+  max-width: 100px;
+}
 </style>

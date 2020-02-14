@@ -9,10 +9,14 @@
     "start": "vue-cli-service serve --open"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "firebase": "^7.8.1",
+    "install": "^0.13.0",
     "mdbvue": "6.4.0",
+    "npm": "^6.13.7",
     "vue": "^2.6.11",
+    "vue-axios": "^2.1.5",
     "vuefire": "^2.2.1"
   },
   "devDependencies": {
