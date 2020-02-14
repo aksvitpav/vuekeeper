@@ -6,7 +6,7 @@
     </mdb-card-body>
     <mdb-card-footer>
       <mdb-badge color="info">{{normalizeDateTime}}</mdb-badge>
-      <mdb-btn color="danger" class="p-1">
+      <mdb-btn color="danger" class="p-1" v-on:click="deleteNote(id)">
         <mdb-icon icon="trash-alt" />
       </mdb-btn>
     </mdb-card-footer>
@@ -22,7 +22,8 @@ export default {
     id: String,
     title: String,
     text: String,
-    created_at: Timestamp
+    created_at: Timestamp,
+    deleteNote: Function
   },
   computed: {
     normalizeDateTime: function() {

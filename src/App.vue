@@ -61,6 +61,10 @@ export default {
         created_at: Timestamp.fromDate(nowDateTime)
       });
       this.getNotes();
+    },
+    //Delete Note from FireBase
+    deleteNote: function(id) {
+      db.collection('notes').doc(id).delete()
     }
   },
   beforeMount() {
