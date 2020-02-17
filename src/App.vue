@@ -14,7 +14,7 @@
         </mdb-col>
       </mdb-row>
       <mdb-row>
-        <mdb-col>
+        <mdb-col md="12" lg="12">
           <mdb-card-group column>
           <Note v-for="(note, index) in notes"
           :id="note.id"
